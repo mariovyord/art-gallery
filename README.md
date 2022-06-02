@@ -1,2 +1,2 @@
-# art-gallery
+# Art Gallery
 SoftUni Exam Prep
