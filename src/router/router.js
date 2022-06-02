@@ -1,5 +1,7 @@
 const express = require('express');
 const logger = require('../middleware/logger');
+const publicationRouter = require('./publicationRouter');
+const userRouter = require('./userRouter');
 const router = express.Router();
 
 // Middleware
@@ -10,5 +12,14 @@ router.get('/', (req, res) => {
 	res.render('home');
 })
 
-module.exports = router;
+router.get('/gallery', (req, res) => {
+	res.render('gallery');
+})
+
+// Other routes
+router.use('/publication', publicationRouter());
+router.use('/user', userRouter());
+
+
+module.exports = () => router;
 
