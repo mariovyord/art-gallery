@@ -1,19 +1,14 @@
 const express = require('express');
+const createController = require('../controllers/createController');
+const detailsController = require('../controllers/detailsController');
 const publicationRouter = express.Router();
 
 publicationRouter.use('/style', express.static('public'));
 
 publicationRouter.route('/create')
-	.get((req, res) => {
-		res.render('create')
-	})
-	.post((req, res) => {
-		res.render('create')
-	})
+	.get(createController)
+	.post(createController);
 
-publicationRouter.get('/:id', (req, res) => {
-	console.log(req.params.id);
-	res.render('details');
-})
+publicationRouter.get('/:id', detailsController);
 
 module.exports = () => publicationRouter;
