@@ -5,6 +5,12 @@ async function getAllPublications() {
 	return pubs;
 }
 
+async function getPublicationById(_id) {
+	const pub = Publication.findOne({ _id: _id }).populate('author').lean();
+	return pub;
+}
+
 module.exports = {
 	getAllPublications,
+	getPublicationById,
 }
