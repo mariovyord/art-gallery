@@ -1,3 +1,4 @@
+const { compare, hash } = require('bcrypt');
 const mongoose = require('mongoose');
 const { Schema, model, Types } = mongoose;
 
@@ -20,6 +21,18 @@ const userSchema = new Schema({
 		default: [],
 	}
 });
+
+userSchema.methods.comparePassword = async function (password) {
+	return await compare(password, this.password);
+}
+
+userSchema.pre('save', async function (next) {
+	if (this.isModified('password')) {
+		this.password = await hash(this.password, 8);
+		console.log('Hashing new password');
+	}
+	next();
+})
 
 const User = model('User', userSchema);
 
