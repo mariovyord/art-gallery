@@ -42,11 +42,8 @@ module.exports = () => (req, res, next) => {
 	if (req.session.user) {
 		req.app.locals.user = req.session.user;
 		req.app.locals.hasUser = true;
-		console.log('USER', req.app.locals.user);
 	} else {
 		req.app.locals.hasUser = false;
-		console.log('NO USER', req.session);
-
 	}
 	req.auth = {
 		signup: (...params) => signup(req.session, ...params),

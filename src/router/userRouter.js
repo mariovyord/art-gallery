@@ -4,6 +4,7 @@ const logoutController = require('../controllers/logoutController');
 const registerController = require('../controllers/registerController');
 const userProfileController = require('../controllers/userProfileController');
 const userRouter = express.Router();
+const routesGuard = require('../middleware/routesGuard');
 
 userRouter.use('/style', express.static('public'));
 
@@ -15,10 +16,10 @@ userRouter.route('/register')
 	.get(registerController.get)
 	.post(registerController.post);
 
-userRouter.get('/logout', logoutController);
+userRouter.get('/logout', routesGuard(), logoutController);
 
 userRouter.route('/:id')
-	.get(userProfileController)
-	.post(userProfileController);
+	.get(routesGuard(), userProfileController)
+	.post(routesGuard(), userProfileController);
 
 module.exports = () => userRouter;
