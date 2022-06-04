@@ -6,8 +6,6 @@ const userProfileController = require('../controllers/userProfileController');
 const userRouter = express.Router();
 const routesGuard = require('../middleware/routesGuard');
 
-userRouter.use('/style', express.static('public'));
-
 userRouter.route('/login')
 	.get(loginController.get)
 	.post(loginController.post);

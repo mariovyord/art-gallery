@@ -1,8 +1,13 @@
-const { createPublication } = require("../services/publicationService");
+const { getPublicationById, updatePublication } = require("../services/publicationService");
 
 module.exports = {
-	get(req, res) {
-		res.render('create');
+	async get(req, res) {
+		try {
+			const pub = await getPublicationById(req.params.id);
+			res.render('edit', { pub });
+		} catch (err) {
+			console.log(err.message);
+		}
 	},
 	async post(req, res) {
 		class Publication {
@@ -11,13 +16,12 @@ module.exports = {
 				this['painting technique'] = data.technique;
 				this['art picture'] = data.picture;
 				this['certificate of authenticity'] = data.certificate;
-				this.author = data.author
 			}
 		}
-		req.body.author = req.session.user._id
 		const pub = new Publication(req.body);
+		console.log(pub)
 		try {
-			await createPublication(pub)
+			await updatePublication(req.params.id, pub)
 			res.redirect('/');
 		} catch (err) {
 			err.message;

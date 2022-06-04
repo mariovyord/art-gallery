@@ -1,4 +1,4 @@
-const { getPublicationById, sharePublication } = require("../services/publicationService");
+const { getPublicationById, sharePublication, deletePublication } = require("../services/publicationService");
 
 module.exports = {
 	async get(req, res) {
@@ -16,6 +16,16 @@ module.exports = {
 		try {
 			const userId = req.session.user._id;
 			await sharePublication(publicationId, userId);
+			res.redirect('/');
+		} catch (err) {
+			console.log(err.message);
+			res.redirect('/publication/details/' + publicationId);
+		}
+	},
+	async delete(req, res) {
+		const publicationId = req.params.id;
+		try {
+			await deletePublication(publicationId);
 			res.redirect('/');
 		} catch (err) {
 			console.log(err.message);
