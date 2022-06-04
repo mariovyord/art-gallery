@@ -10,7 +10,20 @@ async function getPublicationById(_id) {
 	return pub;
 }
 
+async function sharePublication(publicationId, userId) {
+	try {
+		const pub = await Publication.findOne({ _id: publicationId }, { 'users shared': 1 });
+		console.log(pub)
+		pub['users shared'].push(userId);
+		console.log(pub);
+		pub.save();
+	} catch (err) {
+		console.log(err.message);
+	}
+}
+
 module.exports = {
 	getAllPublications,
 	getPublicationById,
+	sharePublication,
 }

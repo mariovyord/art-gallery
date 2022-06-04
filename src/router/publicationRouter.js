@@ -10,6 +10,7 @@ publicationRouter.route('/create')
 	.get(routesGuard(), createController)
 	.post(routesGuard(), createController);
 
-publicationRouter.get('/:id', detailsController);
+publicationRouter.get('/share/:id', routesGuard(), detailsController.share);
+publicationRouter.get('/:id', detailsController.get);
 
 module.exports = () => publicationRouter;
