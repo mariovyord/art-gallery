@@ -15,7 +15,7 @@ const userSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	'my publications': {
+	'publications': {
 		type: [Types.ObjectId],
 		ref: 'Publication',
 		default: [],

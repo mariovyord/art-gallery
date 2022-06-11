@@ -17,7 +17,7 @@ async function createPublication(data) {
 		pub.save();
 		if (data.author) {
 			const user = await User.findOne({ _id: data.author });
-			user['my publications'].push(pub._id);
+			user['publications'].push(pub._id);
 			user.save();
 		}
 	} catch (err) {
