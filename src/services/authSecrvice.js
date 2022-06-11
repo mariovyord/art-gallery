@@ -14,7 +14,7 @@ async function signup(session, username, password, address) {
 		}
 		console.log('Sign up successful');
 	} catch (err) {
-		console.log(err.message);
+		throw new Error(err.message);
 	}
 }
 

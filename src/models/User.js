@@ -6,14 +6,17 @@ const userSchema = new Schema({
 	'username': {
 		type: String,
 		required: true,
+		minlength: [4, 'Username minimum length is 4 charactes'],
 	},
 	'password': {
 		type: String,
 		required: true,
+		minlength: [3, 'Password minimum length is 3 charactes'],
 	},
 	'address': {
 		type: String,
 		required: true,
+		maxlength: [20, 'Address maximum length is 20 characters']
 	},
 	'publications': {
 		type: [Types.ObjectId],
