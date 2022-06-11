@@ -1,4 +1,5 @@
 const Publication = require('../models/Publication');
+const User = require('../models/User');
 
 async function getAllPublications() {
 	const pubs = Publication.find({}).lean();
@@ -14,6 +15,11 @@ async function createPublication(data) {
 	try {
 		const pub = new Publication(data);
 		pub.save();
+		if (data.author) {
+			const user = await User.findOne({ _id: data.author });
+			user['my publications'].push(pub._id);
+			user.save();
+		}
 	} catch (err) {
 		throw err.message;
 	}

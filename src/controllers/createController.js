@@ -11,7 +11,7 @@ module.exports = {
 				this['painting technique'] = data.technique;
 				this['art picture'] = data.picture;
 				this['certificate of authenticity'] = data.certificate;
-				this.author = data.author
+				this.author = data.author;
 			}
 		}
 		req.body.author = req.session.user._id

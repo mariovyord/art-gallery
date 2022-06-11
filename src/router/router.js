@@ -6,6 +6,8 @@ const logger = require('../middleware/logger');
 const publicationRouter = require('./publicationRouter');
 const userRouter = require('./userRouter');
 const authSecrvice = require('../services/authSecrvice');
+const profileController = require('../controllers/profileController');
+const routesGuard = require('../middleware/routesGuard');
 const router = express.Router();
 
 // Middleware
@@ -23,6 +25,7 @@ router.use('/style', express.static('public'));
 
 router.get('/', homeController);
 router.get('/gallery', galleryController);
+router.get('/profile', routesGuard(), profileController);
 
 router.use('/publication', publicationRouter());
 router.use('/user', userRouter());

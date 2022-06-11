@@ -1,6 +1,6 @@
 const { getPublicationById, updatePublication } = require("../services/publicationService");
-
 module.exports = {
+	// TODO: ADD GUARD TO CHECK IF ITS OWNER
 	async get(req, res) {
 		try {
 			const pub = await getPublicationById(req.params.id);
