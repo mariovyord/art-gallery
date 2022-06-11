@@ -1,5 +1,11 @@
+<!-- In case of error, you should display div with class "error-box" -->
+<!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
+{{#if error}}
+<div class="error-box">
+	<p>{{error}}</p>
+</div>
+{{/if}}
 <section id="login-container">
-
 	<div class="container">
 		<!-- Do not forget to change the path to the image -->
 		<img src="/style/img/slider.jpg" alt="image">
@@ -18,8 +24,6 @@
 			<div class="card-no-account">
 				<p>Don't have an account? <a href="/user/register">Sign up</a>.</p>
 			</div>
-
 		</form>
 	</div>
-
 </section>

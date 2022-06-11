@@ -20,6 +20,9 @@ async function signup(session, username, password, address) {
 
 async function login(session, username, password) {
 	const user = await User.findOne({ username });
+	if (!user) {
+		throw new Error('Incorect username or password')
+	}
 	const isCorrectPassword = await user.comparePassword(password);
 	if (user && isCorrectPassword) {
 		session.user = {

@@ -5,10 +5,9 @@ module.exports = {
 	async post(req, res) {
 		try {
 			await req.auth.login(req.body.username, req.body.password);
-
 			res.redirect('/')
 		} catch (err) {
-			res.redirect('/user/login');
+			res.render('login', { error: err.message });
 		}
 	}
 }
